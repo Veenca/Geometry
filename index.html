@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.0/dojo/dojo.js"></script>
+</head>
+<body>
+    <h1>Play with Geometry</h1>
+    <nav>
+        <p>Figure
+        <input type="text" name="figure" id="inputFigure" list="figureName" />
+        <datalist id="figureName">
+            <option value="Triangle">Triangle</option>
+            <option value="Square">Square</option>
+            <option value="Rectangle">Rectangle</option>
+        </datalist>
+        Base<input type="text" name="base" id="baseValue">
+        height<input type="text" name="height" id="heightValue">
+        <input type="button" value="Confirm">
+    </p>
+
+        </nav>
+        <div id="drawingPanel">
+            <ul id=drawList>
+                <li></li>
+                <li></li>
+            </ul>
+
+        </div>
+      
+        <canvas id="gameCanvas" width="800" height="1200"></canvas>
+        <script src="scripts/file.js"></script>
+</body>
+</html>

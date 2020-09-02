@@ -1,0 +1,17 @@
+
+#drawingPanel{
+    border: solid red;
+    width: 100vh;
+    height: 60vh;
+    
+}
+#drawList{
+    list-style-type: none;
+}
+canvas {
+    background: #f8f8f8;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    display: block;
+  }
