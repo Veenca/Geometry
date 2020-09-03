@@ -1,45 +1,82 @@
-let figureInput=document.getElementById('inputFigure');
-function printfig(figure){
-    let c = document.getElementById("gameCanvas");
-    let ctx = c.getContext("2d");
-    ctx.beginPath();
-    if(figure==='Rectangle'){
-    
-    ctx.rect(20, 20, 150, 100);
-    ctx.stroke();
-    }else if(figure==='Triangle'){
-        ctx.moveTo(75,75);
-        ctx.lineTo(20,75);
-        ctx.lineTo(20,25);
-        ctx.closePath();
-        ctx.stroke();
-    }else{
-        ctx.rect(20, 20, 100, 100);
-        ctx.stroke();
+
+let figureInput = document.getElementById('inputFigure');
+let btn = document.getElementById('btn');
+let useless = document.getElementById('height_span');
+let value;
+let options
+let width;
+let height;
+let beenClicked = false;
+function onClick() {
+    value = figureInput.value;
+
+    options = document.getElementById("figureName").childNodes;
+    width = document.getElementById('baseValue').value;
+
+    console.log(width);
+    if (!useless.hasAttribute('class')) {
+        height = document.getElementById('heightValue').value;
+        console.log(height);
+    }
+
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === value) {
+
+            console.log(options[i].value);
+            beenClicked = true;
+            figureInput.value='';
+            break;
+        }
+    }
+}
+function onInput() {
+    let value = figureInput.value;
+    useless = document.getElementById('height_span');
+
+    if (value === 'Square') {
+
+        useless.setAttribute('class', 'useless');
+    }
+    else {
+        if (useless.hasAttribute('class')) {
+            useless.removeAttribute('class');
+        }
     }
 
 }
-function onInput(){
-    let value=figureInput.value;
+figureInput.addEventListener('input', onInput, false);
+btn.addEventListener('click', onClick, false);
+
+function setup() {
+    let canvas = createCanvas(document.getElementById('drawingPanel').offsetWidth, document.getElementById('drawingPanel').offsetHeight);
+    canvas.parent('drawingPanel');
     
-    let options= document.getElementById("figureName").childNodes;
-    
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].value === value) {
-          // An item was selected from the list!
-          // yourCallbackHere()
-          
-          
-          figureInput.value=''   
-          console.log(options[i].value);
-          printfig(options[i].value);
-          return options[i].value;    
-          //break; potrebbe essere utile;
-        }
-      }
+    background(220);
 }
-figureInput.addEventListener('input',onInput,false);
 
+function draw() {
 
+    if (beenClicked === true) {
+        fill(255);
+        switch(value){
+            case 'Square':
+                if (mouseIsPressed) {
+                rect(mouseX-(width/2), mouseY-(width/2), width, width);
+                }
+            break;
+            case 'Rectangle':
+                if (mouseIsPressed) {
+                    rect(mouseX, mouseY, width, height);
+                    }
+            break;
+            case 'Ellipse':
+                if (mouseIsPressed) {
+                    ellipse(mouseX, mouseY, width, height);
+                    }
+            break;
+        }
+         
 
+    }
+}
 

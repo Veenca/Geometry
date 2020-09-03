@@ -1,17 +1,30 @@
-
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
 #drawingPanel{
-    border: solid red;
+   
     width: 100vh;
     height: 60vh;
     
 }
+div.panel{
+    margin-left: 10px;
+    margin-top: 50px;
+    width: 101vh;
+    height: 61vh;
+    border:solid red;
+}
 #drawList{
     list-style-type: none;
 }
-canvas {
-    background: #f8f8f8;
-    padding: 0;
-    margin: 0 auto;
-    margin-bottom: 1rem;
-    display: block;
-  }
+
+.Paining{
+    position: relative;
+    display: inline;
+
+}
+.useless{
+    display: none;
+}
