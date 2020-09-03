@@ -28,3 +28,7 @@ div.panel{
 .useless{
     display: none;
 }
+
+button.clicked{
+    background-color:blue;
+}
