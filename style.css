@@ -12,9 +12,9 @@
 div.panel{
     margin-left: 10px;
     margin-top: 50px;
-    width: 101vh;
-    height: 61vh;
-    border:solid red;
+    width: fit-content;
+    height: fit-content;
+    border:solid black 1px;
 }
 #drawList{
     list-style-type: none;
@@ -32,3 +32,17 @@ div.panel{
 button.clicked{
     background-color:blue;
 }
+input[type="radio"] {
+    display: inline;
+    white-space:nowrap;
+  
+}
+#figureSelection{
+    font-size: 250%;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 30px;
+}
+input[type="number"] {
+    width:50px;
+ }

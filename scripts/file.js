@@ -1,5 +1,5 @@
 
-let figureInput = document.getElementById('inputFigure');
+let figureInput = document.getElementById('figureSelection');
 let btn = document.getElementById('btn');
 let useless = document.getElementById('height_span');
 undobtn=document.getElementById('undobtn')
@@ -12,9 +12,9 @@ let height;
 let beenClicked = false;
 
 function onClick() {
-    value = figureInput.value;
+    value = checkValue(document.getElementsByName('figure'));;
 
-    options = document.getElementById("figureName").childNodes;
+   
     width = document.getElementById('baseValue').value;
 
     console.log(width);
@@ -22,22 +22,29 @@ function onClick() {
         height = document.getElementById('heightValue').value;
         console.log(height);
     }
+    if(value!=null){
+   beenClicked=true;
+}
+}
+function checkValue(radios){
+    
 
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].value === value) {
-
-            console.log(options[i].value);
-            beenClicked = true;
-            figureInput.value = '';
-            break;
-        }
+    for (let i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].checked) {
+        // do whatever you want with the checked radio
+         return radios[i].value
+        // only one radio can be logically checked, don't check the rest
+        
+      }
     }
 }
 function onInput() {
-    let value = figureInput.value;
+    
+    let idk;
     useless = document.getElementById('height_span');
-
-    if (value === 'Square') {
+   idk=checkValue(document.getElementsByName('figure'));
+  
+    if (idk == 'Square') {
 
         useless.setAttribute('class', 'useless');
     }
@@ -59,15 +66,15 @@ function undoelmt() {
     console.log(undo);
 }
 
-figureInput.addEventListener('input', onInput, false);
+figureInput.addEventListener('click', onInput, false);
 btn.addEventListener('click', onClick, false);
 undobtn.addEventListener('click',undoelmt, false);
 let drawings = [];
 function setup() {
     let canvas = createCanvas(document.getElementById('drawingPanel').offsetWidth, document.getElementById('drawingPanel').offsetHeight);
     canvas.parent('drawingPanel');
-    background(255);
-   
+    
+
 }
 let i = 0;
 let b;
@@ -75,7 +82,7 @@ let x;
 let y;
 function mousePressed(){
     if (beenClicked === true && undo==false) {
-        fill(225);
+        fill(document.getElementById('fg_RedValue').value,document.getElementById('fg_GreenValue').value,document.getElementById('fg_BlueValue').value);
         
             x=mouseX;
             y=mouseY;
@@ -91,18 +98,21 @@ function mousePressed(){
                    break;
             }
             drawings.push(b);
-            console.log(drawings.length)
-        // i++;
+          //  console.log(drawings.length)
+    
            
         }
     
 }
 function draw() {
-   background(0)
+    
+   background(document.getElementById('bg_RedValue').value,document.getElementById('bg_GreenValue').value,document.getElementById('bg_BlueValue').value);
    for(i=0;i<drawings.length;i++){
     drawings[i].show();
+    console.log(i);
    }
   if(beenClicked === true){
+    
     switch (value) {
         case 'Square':
            rect(mouseX - (width / 2),mouseY-(width/2), width, width);
@@ -132,9 +142,6 @@ class Rectangle {
 
    
 }
-class Square {
-
-}
 class Ellipse {
     constructor(x, y, w, h) {
         this.x = x;
@@ -146,8 +153,6 @@ class Ellipse {
     
     show() {
         stroke(0);
-       
-      
         ellipse(this.x, this.y, this.w, this.h);
     }
    
