@@ -3,12 +3,14 @@ let figureInput = document.getElementById('inputFigure');
 let btn = document.getElementById('btn');
 let useless = document.getElementById('height_span');
 undobtn=document.getElementById('undobtn')
-console.log(undobtn);
-let value;
+let undo=false;
+
+let value=null;
 let options
 let width;
 let height;
 let beenClicked = false;
+
 function onClick() {
     value = figureInput.value;
 
@@ -46,55 +48,73 @@ function onInput() {
     }
 
 }
+function undoelmt() {
+    if(undo==false){
+        undo=true;
+        undobtn.setAttribute('class', 'clicked');
+    }else if(undo==true){
+        undo=false;
+        undobtn.removeAttribute('class');
+    }
+    console.log(undo);
+}
+
 figureInput.addEventListener('input', onInput, false);
 btn.addEventListener('click', onClick, false);
+undobtn.addEventListener('click',undoelmt, false);
 let drawings = [];
 function setup() {
     let canvas = createCanvas(document.getElementById('drawingPanel').offsetWidth, document.getElementById('drawingPanel').offsetHeight);
     canvas.parent('drawingPanel');
-
-    background(220);
+    background(255);
+   
 }
 let i = 0;
 let b;
-function draw() {
-
-    if (beenClicked === true) {
-        fill(255);
-        if (mouseIsPressed) {
+let x;
+let y;
+function mousePressed(){
+    if (beenClicked === true && undo==false) {
+        fill(225);
+        
+            x=mouseX;
+            y=mouseY;
             switch (value) {
                 case 'Square':
-
-                    b = new Rectangle(mouseX - (width / 2), mouseY-(width/2), width, width);
-                    drawings.push(b);
-                    drawings[i].show();
-                    i++;
-                  
-
-                    break;
+                    b = new Rectangle(x - (width / 2),y-(width/2), width, width);
+                break;
                 case 'Rectangle':
-
-                    
-                    b = new Rectangle(mouseX - (width / 2), mouseY-(height/2), width, height);
-                    drawings.push(b);
-                    drawings[i].show();
-                    i++;
-                  
-
-                    break;
+                    b = new Rectangle(x-(width / 2), y-(height/2), width, height);               
+                   break;
                 case 'Ellipse':
-
-                    b = new Ellipse(mouseX, mouseY, width, height);
-                    drawings.push(b);
-                    drawings[i].show();
-                    i++;
-                   
-
-                    break;
+                    b = new Ellipse(x,y, width, height);
+                   break;
             }
-
+            drawings.push(b);
+            console.log(drawings.length)
+        // i++;
+           
         }
+    
+}
+function draw() {
+   background(0)
+   for(i=0;i<drawings.length;i++){
+    drawings[i].show();
+   }
+  if(beenClicked === true){
+    switch (value) {
+        case 'Square':
+           rect(mouseX - (width / 2),mouseY-(width/2), width, width);
+        break;
+        case 'Rectangle':   
+        rect(mouseX- (width / 2), mouseY- (height / 2), width, height);
+           break;
+        case 'Ellipse':
+            ellipse(mouseX, mouseY, width, height);
+           break;
     }
+  }
 }
 class Rectangle {
 
@@ -106,9 +126,11 @@ class Rectangle {
     }
     show() {
         stroke(0);
-        fill(225);
+       
         rect(this.x, this.y, this.w, this.h);
     }
+
+   
 }
 class Square {
 
@@ -119,11 +141,15 @@ class Ellipse {
         this.y = y;
         this.w = w;
         this.h = h;
+        
     }
+    
     show() {
         stroke(0);
-        fill(225);
+       
+      
         ellipse(this.x, this.y, this.w, this.h);
     }
+   
 }
 

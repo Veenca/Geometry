@@ -24,3 +24,25 @@
 
     }
 }*/
+/* Undo function*
+
+function mousePressed() {
+    
+    if(undo==true){
+       
+    for (let j = drawings.length - 1; j >= 0; j--) {
+        
+      if (drawings[j].contains(mouseX, mouseY)) {
+        
+       drawings.splice(j, 1);
+      
+        console.log(drawings.length);
+        console.log(drawings[j]);
+        i--;
+      }
+    }
+}
+  }
+
+*/
+
