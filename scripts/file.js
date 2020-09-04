@@ -82,19 +82,19 @@ let x;
 let y;
 function mousePressed(){
     if (beenClicked === true && undo==false) {
-        fill(document.getElementById('fg_RedValue').value,document.getElementById('fg_GreenValue').value,document.getElementById('fg_BlueValue').value);
+        let c=color(document.getElementById('fg_RedValue').value,document.getElementById('fg_GreenValue').value,document.getElementById('fg_BlueValue').value);
         
             x=mouseX;
             y=mouseY;
             switch (value) {
                 case 'Square':
-                    b = new Rectangle(x - (width / 2),y-(width/2), width, width);
+                    b = new Rectangle(mouseX - (document.getElementById('baseValue').value / 2),mouseY-(document.getElementById('baseValue').value/2), document.getElementById('baseValue').value, document.getElementById('baseValue').value,c);
                 break;
                 case 'Rectangle':
-                    b = new Rectangle(x-(width / 2), y-(height/2), width, height);               
+                    b = new Rectangle(mouseX- (width / 2), mouseY- (document.getElementById('heightValue').value / 2), document.getElementById('baseValue').value, document.getElementById('heightValue').value,c);               
                    break;
                 case 'Ellipse':
-                    b = new Ellipse(x,y, width, height);
+                    b = new Ellipse(mouseX, mouseY, document.getElementById('baseValue').value, document.getElementById('heightValue').value,c);
                    break;
             }
             drawings.push(b);
@@ -104,55 +104,63 @@ function mousePressed(){
         }
     
 }
+
 function draw() {
     
    background(document.getElementById('bg_RedValue').value,document.getElementById('bg_GreenValue').value,document.getElementById('bg_BlueValue').value);
+   //let asd=checkValue(document.getElementsByName('figure'));
+  
    for(i=0;i<drawings.length;i++){
     drawings[i].show();
     console.log(i);
    }
-  if(beenClicked === true){
-    
+ 
+    let c=color(document.getElementById('fg_RedValue').value,document.getElementById('fg_GreenValue').value,document.getElementById('fg_BlueValue').value);
+    fill(c);
+    if(beenClicked===true){
     switch (value) {
         case 'Square':
-           rect(mouseX - (width / 2),mouseY-(width/2), width, width);
+           
+           rect(mouseX - (document.getElementById('baseValue').value / 2),mouseY-(document.getElementById('baseValue').value/2), document.getElementById('baseValue').value, document.getElementById('baseValue').value);
         break;
         case 'Rectangle':   
-        rect(mouseX- (width / 2), mouseY- (height / 2), width, height);
+        rect(mouseX- (width / 2), mouseY- (document.getElementById('heightValue').value / 2), document.getElementById('baseValue').value, document.getElementById('heightValue').value);
            break;
         case 'Ellipse':
-            ellipse(mouseX, mouseY, width, height);
+            ellipse(mouseX, mouseY, document.getElementById('baseValue').value, document.getElementById('heightValue').value);
            break;
     }
-  }
+}
 }
 class Rectangle {
 
-    constructor(x, y, w, h) {
+    constructor(x, y, w, h,c) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+        this.color=c
     }
     show() {
         stroke(0);
-       
+       fill(this.color);
         rect(this.x, this.y, this.w, this.h);
     }
 
    
 }
 class Ellipse {
-    constructor(x, y, w, h) {
+    constructor(x, y, w, h,c) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        
+        this.color=c
     }
     
     show() {
         stroke(0);
+        fill(this.color);
         ellipse(this.x, this.y, this.w, this.h);
     }
    

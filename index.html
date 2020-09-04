@@ -18,7 +18,7 @@
         
             <p>Figure:</p>
                 <div id="figureSelection" >
-                <input type="radio" id="Rectangle" name="figure" value="Rectangle">
+                <input type="radio" id="Rectangle" name="figure" value="Rectangle" checked>
                 <label for="Rectangle">Rectangle</label>
                 <input type="radio" id="Square" name="figure" value="Square">
                 <label for="Square"><i class="far fa-square"></i></label>
@@ -26,8 +26,8 @@
                 <label for="Ellipse"><i class="far fa-circle"></i></label>
                 
             </div>
-        Base <input type="number" name="base" id="baseValue" value="25">
-        <span id="height_span">Height <input type="number" name="height" id="heightValue" value="25"></span>
+        Base <input type="number" name="base" id="baseValue" value="25" min='0'>
+        <span id="height_span">Height <input type="number" name="height" id="heightValue" value="25" min='0'></span>
         <input type="button" value="Confirm" id="btn">
 
 
