@@ -88,12 +88,21 @@ function mousePressed() {
         console.log(drawings.length)
         
 
-    }if(undo==true && isclicking == true){
+    }else if(undo==true && isclicking == true){
         console.log('ok');
+        for(let i=0;i<drawings.length;i++){
+         if(drawings[i].contains(mouseX,mouseY)){
+            drawings.splice(i,1);
+             
+         }
+        
+         
+           } 
     }
+}
     
 
-}
+
 
 function draw() {
 
@@ -109,6 +118,7 @@ function draw() {
     let c = color(document.getElementById('fg_RedValue').value, document.getElementById('fg_GreenValue').value, document.getElementById('fg_BlueValue').value);
     fill(c);
     div.style.cursor = 'pointer';
+    if(undo==false){
     switch (checkValue(document.getElementsByName('figure'))) {
         case 'Square':
 
@@ -121,6 +131,10 @@ function draw() {
             ellipse(mouseX, mouseY, document.getElementById('baseValue').value, document.getElementById('heightValue').value);
             break;
     }
+    if(undo==true){
+        div.style.cursor = 'crossair';
+    }
+}
 
 }
 class Rectangle {
@@ -136,6 +150,17 @@ class Rectangle {
         stroke(0);
         fill(this.color);
         rect(this.x, this.y, this.w, this.h);
+    }
+    contains(px,py){
+
+        let offw=(this.w*1)+this.x;
+        let offleft=this.x;
+        let offh=(this.h*1)+this.y;
+        let offtop=this.y;
+      
+      return findpoint(offw,offleft,offtop,offh,px,py);
+      
+    
     }
 
 
@@ -158,6 +183,7 @@ class Ellipse {
 }
 
 function findpoint(x1, x2, y1, y2, x, y) {
+    
 
     if (x <= x1 && x >= x2 &&
         y >= y1 && y <= y2) {
