@@ -5,6 +5,7 @@ undobtn = document.getElementById('undobtn')
 let undo = false;
 let beenClicked = false;
 goBackBtn = document.getElementById('goBackBtn');
+let savebtn= document.getElementById('Save');
 function checkValue(radios) {
 
     for (let j = 0, length = radios.length; j < length; j++) {
@@ -99,7 +100,6 @@ function mousePressed() {
         drawings.push(b);
         //    console.log(drawings.length)// DEBUG
 
-<<<<<<< HEAD
     }else if(undo==true && isclicking == true){
         console.log('ok');
         for(let i=0;i<drawings.length;i++){
@@ -115,22 +115,6 @@ function mousePressed() {
     
 
 
-=======
-
-    } else if (undo == true && isclicking == true) {
-        //  console.log('ok'); // DEBUG
-        for (let i = 0; i < drawings.length; i++) {
-
-            if (drawings[i].contains(mouseX, mouseY)) {
-                drawings.splice(i, 1);
-                //      console.log(drawings.length); //DEBUG
-            }
-
-
-        }
-    }
-}
->>>>>>> b540a69... update
 
 
 function draw() {
@@ -150,7 +134,6 @@ function draw() {
     
     fill(c);
     div.style.cursor = 'pointer';
-<<<<<<< HEAD
     if(undo==false){
     switch (checkValue(document.getElementsByName('figure'))) {
         case 'Square':
@@ -164,27 +147,10 @@ function draw() {
             ellipse(mouseX, mouseY, document.getElementById('baseValue').value, document.getElementById('heightValue').value);
             break;
     }
-    if(undo==true){
-        div.style.cursor = 'crossair';
-    }
+    
 }
-=======
-    if (undo == false && beenClicked==false) {
-        switch (checkValue(document.getElementsByName('figure'))) {
-            case 'Square':
 
-                rect(mouseX - (document.getElementById('baseValue').value / 2), mouseY - (document.getElementById('baseValue').value / 2), document.getElementById('baseValue').value, document.getElementById('baseValue').value);
-                break;
-            case 'Rectangle':
-                rect(mouseX - (document.getElementById('baseValue').value / 2), mouseY - (document.getElementById('heightValue').value / 2), document.getElementById('baseValue').value, document.getElementById('heightValue').value);
-                break;
-            case 'Ellipse':
-                ellipse(mouseX, mouseY, document.getElementById('baseValue').value, document.getElementById('heightValue').value);
-                break;
-        }
->>>>>>> b540a69... update
-
-    }
+    
     if (undo == true) {
         div.style.cursor = 'crosshair';
     }
@@ -203,7 +169,6 @@ class Rectangle {
         fill(this.color);
         rect(this.x, this.y, this.w, this.h);
     }
-<<<<<<< HEAD
     contains(px,py){
 
         let offw=(this.w*1)+this.x;
@@ -214,18 +179,6 @@ class Rectangle {
       return findpoint(offw,offleft,offtop,offh,px,py);
       
     
-=======
-    contains(px, py) {
-
-        let offw = (this.w * 1) + this.x;
-        let offleft = this.x;
-        let offh = (this.h * 1) + this.y;
-        let offtop = this.y;
-
-        return findpoint(offw, offleft, offtop, offh, px, py);
-
-
->>>>>>> b540a69... update
     }
 
 
@@ -315,3 +268,7 @@ pickr.on('show', (color, instance) => {
     fg_Green.value=color.toRGBA()[1];
     fg_Red.value=color.toRGBA()[0];
 });
+function save(){
+    save(canvas, 'myCanvas.jpg');
+}
+savebtn.addEventListener('click',save,false)
