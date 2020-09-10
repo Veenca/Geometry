@@ -13,7 +13,7 @@
 }
 div.panel{
     margin-left: 10px;
-    margin-top: 50px;
+    
     display: flex;
     justify-content: center;
     
@@ -62,19 +62,20 @@ input[type="number"] {
     text-align: center;
     font-weight: bold;
 }
-header{
+.align{
     display: flex;
     justify-content: center;
-  
 }
+
 h4{
     text-align: center;
 }
-.colorselection{
-    display: flex;
-    justify-content: center;
+#drawingPreview{
+   width: 20vh;
+   height: 20vh;
+  
+    position: absolute;
+    top:20px;
+    left: 90px;
 }
-#sass{
-    display: flex;
-    justify-content: center;
-}
+

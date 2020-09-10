@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="scripts/p5.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
 
 </head>
 
@@ -40,7 +40,7 @@
 
 
     </nav>
-    <header>
+    <header class="align">
         <button id="undobtn" class=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-crosshair" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#3F51B5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z"/>
             <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
@@ -59,21 +59,32 @@
     </header>
     <br>
     <h4>Select Background color (Selection method RGB) value range 0-255</h4>
-    <div id="selec_bg_color" class="colorselection">
+    <div id="selec_bg_color" class="align">
      
      <span id="Bg_red">Red <input type="number" name="Red" id="bg_RedValue" value="0" min="0" max="255"></span>
      <span id="Bg_green">Green <input type="number" name="Green" id="bg_GreenValue" value="0" min="0" max="255"></span>
      <span id="Bg_blue">Blue <input type="number" name="Blue" id="bg_BlueValue" value="85" min="0" max="255"></span>
     </div>
     <h4>Select Next Figure color (Selection method RGB) value range 0-255</h4>
-    <div id="selec_nexfig_color" class="colorselection">
+    <div id="selec_nexfig_color" class="align">
      
      <span id="Fg_red">Red <input type="number" name="Red" id="fg_RedValue" value="225" min="0" max="255"></span>
      <span id="Fg_green">Green <input type="number" name="Green" id="fg_GreenValue" value="225" min="0" max="255"></span>
      <span id="Fg_blue">Blue <input type="number" name="Blue" id="fg_BlueValue" value="225" min="0" max="255"></span>
+     <div id="drawingPreview">Preview:</div>
     </div>
-    <div id="sass">
-    <div id='BgPalette' class="color-picker"></div></div>
+    <div class="align">
+    <div id='BgPalette' class="color-picker"></div>
+</div>
+<h4>Stroke Weight</h4>
+    <div class="align">
+    <input id=strokeValue type="range" min="0" max="10" value="1">
+   
+    </div>
+   
+    
+    
+    
     <button id='Save'>Save</button>
     <div class="panel">
         <div id="drawingPanel">
