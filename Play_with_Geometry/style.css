@@ -1,0 +1,80 @@
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+#drawingPanel{
+   
+    width: 100vh;
+    height: 60vh;
+    
+}
+div.panel{
+    margin-left: 10px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    
+    
+   
+}
+#drawList{
+    list-style-type: none;
+}
+
+.Paining{
+    position: relative;
+    display: inline;
+
+}
+.useless{
+    display: none;
+}
+
+button.clicked{
+    background-color:blue;
+}
+input[type="radio"] {
+    display: inline;
+    white-space:nowrap;
+  
+}
+#figureSelection{
+    font-size: 250%;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 30px;
+    
+}
+input[type="number"] {
+    width:50px;
+ }
+ nav{
+    display: flex;
+    justify-content: center;
+  
+
+}
+#Title{
+   width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+header{
+    display: flex;
+    justify-content: center;
+  
+}
+h4{
+    text-align: center;
+}
+.colorselection{
+    display: flex;
+    justify-content: center;
+}
+#sass{
+    display: flex;
+    justify-content: center;
+}
